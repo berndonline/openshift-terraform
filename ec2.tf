@@ -1,10 +1,9 @@
-
 resource "aws_key_pair" "auth" {
   key_name   = "${var.key_name}"
   public_key = "${file(var.public_key_path)}"
 }
 resource "aws_instance" "bastion" {
-  image_id = "${lookup(var.aws_amis, var.aws_region)}"
+  ami = "${lookup(var.aws_amis, var.aws_region)}"
   instance_type        = "t2.small"
   subnet_id            = "${aws_subnet.PublicSubnetA.id}"
   security_groups = [

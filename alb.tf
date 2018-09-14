@@ -1,5 +1,5 @@
 resource "aws_lb" "master_alb" {
-  name            = "master_alb"
+  name            = "master"
   subnets         = ["${aws_subnet.PublicSubnetA.id}","${aws_subnet.PublicSubnetB.id}","${aws_subnet.PublicSubnetC.id}"]
   security_groups = ["${aws_security_group.sec_master_alb.id}"]
   internal        = false
@@ -9,7 +9,7 @@ resource "aws_lb" "master_alb" {
   }
 }
 resource "aws_lb" "infra_alb" {
-  name            = "infra_alb"
+  name            = "infra"
   subnets         = ["${aws_subnet.PublicSubnetA.id}","${aws_subnet.PublicSubnetB.id}","${aws_subnet.PublicSubnetC.id}"]
   security_groups = ["${aws_security_group.sec_infra_alb.id}"]
   internal        = false
