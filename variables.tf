@@ -20,12 +20,8 @@ variable "aws_region" {
 }
 variable "aws_amis" {
   default = {
-    eu-west-1 = "ami-0bdb1d6c15a40392c"
+    eu-west-1 = "ami-6e28b517"
   }
-}
-variable "dnszonename" {
-  default = "paas.hostgate.net"
-  description = "my internal dns name"
 }
 variable "vpc_cidr" {
     default = "10.0.0.0/20"
