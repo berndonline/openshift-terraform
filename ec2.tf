@@ -13,10 +13,6 @@ resource "aws_instance" "bastion" {
   associate_public_ip_address = true
   key_name = "${aws_key_pair.bastion.id}"
   user_data = "${data.template_file.sysprep-bastion.rendered}"
-  provisioner "file" {
-  source      = "./helper_scripts/id_rsa"
-  destination = "/home/ec2-user/.ssh/id_rsa"
-  }
   tags {
     Name = "Bastion"
   }
