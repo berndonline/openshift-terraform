@@ -20,9 +20,8 @@ resource "aws_instance" "bastion" {
   lifecycle {
     create_before_destroy = true
   }
-  tag {
-    key = "Name"
-    value = "Bastion"
+  tags {
+    Name = "Bastion"
   }
 }
 resource "aws_launch_configuration" "launch_master" {
