@@ -49,14 +49,6 @@ resource "aws_lb_target_group" "group_infra_alb" {
     port                = 80
   }
 }
-resource "aws_autoscaling_attachment" "autoscale_master_alb" {
-  alb_target_group_arn   = "${aws_lb_target_group.group_master_alb.arn}"
-  autoscaling_group_name = "${aws_autoscaling_group.group_master.id}"
-}
-resource "aws_autoscaling_attachment" "autoscale_infra_alb" {
-  alb_target_group_arn   = "${aws_lb_target_group.group_infra_alb.arn}"
-  autoscaling_group_name = "${aws_autoscaling_group.group_infra.id}"
-}
 resource "aws_lb_listener" "listener_master_alb" {
   load_balancer_arn = "${aws_lb.master_alb.arn}"
   port              = 8443
@@ -74,4 +66,34 @@ resource "aws_lb_listener" "listener_infra_alb" {
     target_group_arn = "${aws_lb_target_group.group_infra_alb.arn}"
     type             = "forward"
   }
+}
+resource "aws_alb_target_group_attachment" "master_alb" {
+  target_group_arn = "${aws_alb_target_group.group_master.arn}"
+  target_id        = "${aws_instance.master1.id}"
+  port             = 8443
+}
+resource "aws_alb_target_group_attachment" "master_alb" {
+  target_group_arn = "${aws_alb_target_group.group_master.arn}"
+  target_id        = "${aws_instance.master2.id}"
+  port             = 8443
+}
+resource "aws_alb_target_group_attachment" "master_alb" {
+  target_group_arn = "${aws_alb_target_group.group_master.arn}"
+  target_id        = "${aws_instance.master3.id}"
+  port             = 8443
+}
+resource "aws_alb_target_group_attachment" "infra_alb" {
+  target_group_arn = "${aws_alb_target_group.group_infra.arn}"
+  target_id        = "${aws_instance.infra1.id}"
+  port             = 80
+}
+resource "aws_alb_target_group_attachment" "infra_alb" {
+  target_group_arn = "${aws_alb_target_group.group_infra.arn}"
+  target_id        = "${aws_instance.infra2.id}"
+  port             = 80
+}
+resource "aws_alb_target_group_attachment" "infra_alb" {
+  target_group_arn = "${aws_alb_target_group.group_infra.arn}"
+  target_id        = "${aws_instance.infra3.id}"
+  port             = 80
 }

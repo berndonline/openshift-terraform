@@ -1,14 +1,18 @@
-variable "public_key_path" {
+variable "bastion_key_path" {
   description = "My public ssh key"
    default = "/home/berndonline/.ssh/id_rsa.pub"
 }
-variable "private_key_path" {
+variable "openshift_key_path" {
   description = "My public ssh key"
-   default = "/home/berndonline/.ssh/id_rsa"
+   default = "./helper_scripts/id_rsa.pub"
 }
-variable "key_name" {
+variable "bastion_key_name" {
   description = "Desired name of AWS key pair"
-  default     = "terraform"
+  default     = "bastion"
+}
+variable "openshift_key_name" {
+  description = "Desired name of AWS key pair"
+  default     = "openshift"
 }
 variable "aws_region" {
   description = "AWS region to launch servers."
