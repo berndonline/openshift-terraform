@@ -4,7 +4,7 @@ resource "aws_key_pair" "bastion" {
 }
 resource "aws_instance" "bastion" {
   ami = "${lookup(var.aws_amis, var.aws_region)}"
-  instance_type        = "t2.small"
+  instance_type        = "t2.micro"
   subnet_id            = "${aws_subnet.PublicSubnetA.id}"
   security_groups = [
     "${aws_security_group.sec_openshift.id}",

@@ -6,7 +6,6 @@ sudo yum install -y wget git net-tools bind-utils iptables-services bridge-utils
 sudo yum-config-manager --enable rhui-REGION-rhel-server-extras
 sudo yum install -y docker NetworkManager
 
-
 sudo bash -c 'cat <<EOF > /etc/sysconfig/docker-storage-setup
 DEVS=/dev/xvdf
 VG=docker-vg
