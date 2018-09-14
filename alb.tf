@@ -71,7 +71,7 @@ resource "aws_autoscaling_attachment" "autoscale_infra_alb" {
   autoscaling_group_name = "${aws_autoscaling_group.group_infra.id}"
 }
 resource "aws_lb_listener" "listener_master_alb" {
-  load_balancer_arn = "${aws_lb.alb.arn}"
+  load_balancer_arn = "${aws_lb.master_alb.arn}"
   port              = 8443
   protocol          = "HTTPS"
   default_action {
@@ -80,7 +80,7 @@ resource "aws_lb_listener" "listener_master_alb" {
   }
 }
 resource "aws_lb_listener" "listener_infra_alb" {
-  load_balancer_arn = "${aws_lb.alb.arn}"
+  load_balancer_arn = "${aws_lb.infra_alb.arn}"
   port              = 80
   protocol          = "HTTP"
   default_action {
