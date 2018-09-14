@@ -39,7 +39,7 @@ resource "aws_security_group" "sec_openshift" {
   }
 }
 resource "aws_security_group" "sec_master_alb" {
-  name = "sec_elb"
+  name = "sec_master_alb"
   vpc_id      = "${aws_vpc.default.id}"
 
   egress {
@@ -56,7 +56,7 @@ resource "aws_security_group" "sec_master_alb" {
   }
 }
 resource "aws_security_group" "sec_infra_alb" {
-  name = "sec_elb"
+  name = "sec_infra_alb"
   vpc_id      = "${aws_vpc.default.id}"
 
   egress {
