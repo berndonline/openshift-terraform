@@ -3,6 +3,8 @@
 set -x
 exec > /var/log/user-data.log 2>&1
 
+sudo su -
+
 yum install -y wget git net-tools bind-utils iptables-services bridge-utils bash-completion httpd-tools
 yum update -y
 

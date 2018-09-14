@@ -12,7 +12,7 @@ variable "aws_region" {
 }
 variable "aws_amis" {
   default = {
-    eu-west-1 = "ami-0a0d47cb1b5685c02"
+    eu-west-1 = "ami-0bdb1d6c15a40392c"
   }
 }
 variable "dnszonename" {

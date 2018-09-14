@@ -1,6 +1,6 @@
 set -x
 
-sudo -E su
+sudo su -
 
 yum install -y "@Development Tools" python2-pip openssl-devel python-devel gcc libffi-devel
 

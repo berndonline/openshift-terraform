@@ -1,11 +1,11 @@
 resource "aws_lb" "master_alb" {
-  name            = "master"
-  subnets         = ["${aws_subnet.PublicSubnetA.id}","${aws_subnet.PublicSubnetB.id}","${aws_subnet.PublicSubnetC.id}"]
-  security_groups = ["${aws_security_group.sec_master_alb.id}"]
-  internal        = false
-  idle_timeout    = 60
+  name               = "master"
+  internal           = false
+  load_balancer_type = "network"
+  subnets            = ["${aws_subnet.PublicSubnetA.id}","${aws_subnet.PublicSubnetB.id}","${aws_subnet.PublicSubnetC.id}"]
+  enable_cross_zone_load_balancing  = true
   tags {
-    Name    = "master_alb"
+    Name = "master_alb"
   }
 }
 resource "aws_lb" "infra_alb" {
@@ -21,23 +21,10 @@ resource "aws_lb" "infra_alb" {
 resource "aws_lb_target_group" "group_master_alb" {
   name     = "master-alb-target-group"
   port     = "8443"
-  protocol = "HTTPS"
+  protocol = "TCP"
   vpc_id   = "${aws_vpc.default.id}"
   tags {
     name = "group_master_alb"
-  }
-  stickiness {
-    type            = "lb_cookie"
-    cookie_duration = 1800
-    enabled         = true
-  }
-  health_check {
-    healthy_threshold   = 3
-    unhealthy_threshold = 10
-    timeout             = 5
-    interval            = 10
-    path                = "/"
-    port                = 8443
   }
 }
 resource "aws_lb_target_group" "group_infra_alb" {
@@ -73,7 +60,7 @@ resource "aws_autoscaling_attachment" "autoscale_infra_alb" {
 resource "aws_lb_listener" "listener_master_alb" {
   load_balancer_arn = "${aws_lb.master_alb.arn}"
   port              = 8443
-  protocol          = "HTTPS"
+  protocol          = "TCP"
   default_action {
     target_group_arn = "${aws_lb_target_group.group_master_alb.arn}"
     type             = "forward"
