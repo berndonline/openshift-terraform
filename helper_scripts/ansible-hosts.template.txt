@@ -13,6 +13,8 @@ openshift_release=v3.9
 
 openshift_check_min_host_memory_gb=8
 openshift_disable_check=docker_image_availability,docker_storage,disk_availability
+
+# See issue https://github.com/openshift/openshift-ansible/issues/8247
 openshift_docker_selinux_enabled=False
 
 containerized=true
