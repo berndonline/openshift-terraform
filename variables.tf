@@ -2,6 +2,10 @@ variable "public_key_path" {
   description = "My public ssh key"
    default = "/home/berndonline/.ssh/id_rsa.pub"
 }
+variable "private_key_path" {
+  description = "My public ssh key"
+   default = "/home/berndonline/.ssh/id_rsa"
+}
 variable "key_name" {
   description = "Desired name of AWS key pair"
   default     = "terraform"

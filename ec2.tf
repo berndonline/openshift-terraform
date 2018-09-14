@@ -13,8 +13,16 @@ resource "aws_instance" "bastion" {
   associate_public_ip_address = true
   key_name = "${aws_key_pair.auth.id}"
   user_data = "${data.template_file.sysprep-bastion.rendered}"
+  provisioner "file" {
+    source      = "${var.private_key_path}"
+    destination = "/home/ec2-user/.ssh/id_rsa"
+  }
   lifecycle {
     create_before_destroy = true
+  }
+  tag {
+    key = "Name"
+    value = "Bastion"
   }
 }
 resource "aws_launch_configuration" "launch_master" {
