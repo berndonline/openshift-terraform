@@ -33,7 +33,7 @@ resource "aws_instance" "master1" {
     "${aws_security_group.sec_openshift.id}",
   ]
   key_name = "${aws_key_pair.openshift.id}"
-  user_data = "${data.template_file.sysprep-master.rendered}"
+  user_data = "${data.template_file.sysprep-openshift.rendered}"
   tags {
     Name = "Master-1"
   }
@@ -46,7 +46,7 @@ resource "aws_instance" "master2" {
     "${aws_security_group.sec_openshift.id}",
   ]
   key_name = "${aws_key_pair.openshift.id}"
-  user_data = "${data.template_file.sysprep-master.rendered}"
+  user_data = "${data.template_file.sysprep-openshift.rendered}"
   tags {
     Name = "Master-2"
   }
@@ -59,7 +59,7 @@ resource "aws_instance" "master3" {
     "${aws_security_group.sec_openshift.id}",
   ]
   key_name = "${aws_key_pair.openshift.id}"
-  user_data = "${data.template_file.sysprep-master.rendered}"
+  user_data = "${data.template_file.sysprep-openshift.rendered}"
   tags {
     Name = "Master-3"
   }
@@ -72,7 +72,7 @@ resource "aws_instance" "worker1" {
     "${aws_security_group.sec_openshift.id}",
   ]
   key_name = "${aws_key_pair.openshift.id}"
-  user_data = "${data.template_file.sysprep-worker.rendered}"
+  user_data = "${data.template_file.sysprep-openshift.rendered}"
   tags {
     Name = "Worker-1"
   }
@@ -85,7 +85,7 @@ resource "aws_instance" "worker2" {
     "${aws_security_group.sec_openshift.id}",
   ]
   key_name = "${aws_key_pair.openshift.id}"
-  user_data = "${data.template_file.sysprep-worker.rendered}"
+  user_data = "${data.template_file.sysprep-openshift.rendered}"
   tags {
     Name = "Worker-2"
   }
@@ -98,7 +98,7 @@ resource "aws_instance" "worker3" {
     "${aws_security_group.sec_openshift.id}",
   ]
   key_name = "${aws_key_pair.openshift.id}"
-  user_data = "${data.template_file.sysprep-worker.rendered}"
+  user_data = "${data.template_file.sysprep-openshift.rendered}"
   tags {
     Name = "Worker-3"
   }
@@ -106,12 +106,12 @@ resource "aws_instance" "worker3" {
 resource "aws_instance" "infra1" {
   ami = "${lookup(var.aws_amis, var.aws_region)}"
   instance_type        = "t2.large"
-  subnet_id            = "${aws_subnet.PublicSubnetA.id}"
+  subnet_id            = "${aws_subnet.PrivateSubnetA.id}"
   security_groups = [
     "${aws_security_group.sec_openshift.id}",
   ]
   key_name = "${aws_key_pair.openshift.id}"
-  user_data = "${data.template_file.sysprep-infra.rendered}"
+  user_data = "${data.template_file.sysprep-openshift.rendered}"
   tags {
     Name = "Infra-1"
   }
@@ -119,12 +119,12 @@ resource "aws_instance" "infra1" {
 resource "aws_instance" "infra2" {
   ami = "${lookup(var.aws_amis, var.aws_region)}"
   instance_type        = "t2.large"
-  subnet_id            = "${aws_subnet.PublicSubnetB.id}"
+  subnet_id            = "${aws_subnet.PrivateSubnetB.id}"
   security_groups = [
     "${aws_security_group.sec_openshift.id}",
   ]
   key_name = "${aws_key_pair.openshift.id}"
-  user_data = "${data.template_file.sysprep-infra.rendered}"
+  user_data = "${data.template_file.sysprep-openshift.rendered}"
   tags {
     Name = "Infra-2"
   }
@@ -132,12 +132,12 @@ resource "aws_instance" "infra2" {
 resource "aws_instance" "infra3" {
   ami = "${lookup(var.aws_amis, var.aws_region)}"
   instance_type        = "t2.large"
-  subnet_id            = "${aws_subnet.PublicSubnetC.id}"
+  subnet_id            = "${aws_subnet.PrivateSubnetC.id}"
   security_groups = [
     "${aws_security_group.sec_openshift.id}",
   ]
   key_name = "${aws_key_pair.openshift.id}"
-  user_data = "${data.template_file.sysprep-infra.rendered}"
+  user_data = "${data.template_file.sysprep-openshift.rendered}"
   tags {
     Name = "Infra-3"
   }
