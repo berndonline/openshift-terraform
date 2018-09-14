@@ -1,6 +1,6 @@
 resource "aws_key_pair" "bastion" {
   key_name   = "${var.bastion_key_name}"
-  public_key = "${file(var.bastion_public_key_path)}"
+  public_key = "${file(var.bastion_key_path)}"
 }
 resource "aws_instance" "bastion" {
   ami = "${lookup(var.aws_amis, var.aws_region)}"
@@ -19,7 +19,7 @@ resource "aws_instance" "bastion" {
 }
 resource "aws_key_pair" "openshift" {
   key_name   = "${var.openshift_key_name}"
-  public_key = "${file(var.openshift_public_key_path)}"
+  public_key = "${file(var.openshift_key_path)}"
 }
 resource "aws_instance" "master1" {
   ami = "${lookup(var.aws_amis, var.aws_region)}"

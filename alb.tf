@@ -69,31 +69,12 @@ resource "aws_lb_listener" "listener_infra_alb" {
 }
 resource "aws_alb_target_group_attachment" "master_alb" {
   target_group_arn = "${aws_alb_target_group.group_master.arn}"
-  target_id        = "${aws_instance.master1.id}"
+  target_id        = ["${aws_instance.master1.id}","${aws_instance.master2.id}","${aws_instance.master3.id}"]
   port             = 8443
 }
-resource "aws_alb_target_group_attachment" "master_alb" {
-  target_group_arn = "${aws_alb_target_group.group_master.arn}"
-  target_id        = "${aws_instance.master2.id}"
-  port             = 8443
-}
-resource "aws_alb_target_group_attachment" "master_alb" {
-  target_group_arn = "${aws_alb_target_group.group_master.arn}"
-  target_id        = "${aws_instance.master3.id}"
-  port             = 8443
-}
+
 resource "aws_alb_target_group_attachment" "infra_alb" {
   target_group_arn = "${aws_alb_target_group.group_infra.arn}"
-  target_id        = "${aws_instance.infra1.id}"
-  port             = 80
-}
-resource "aws_alb_target_group_attachment" "infra_alb" {
-  target_group_arn = "${aws_alb_target_group.group_infra.arn}"
-  target_id        = "${aws_instance.infra2.id}"
-  port             = 80
-}
-resource "aws_alb_target_group_attachment" "infra_alb" {
-  target_group_arn = "${aws_alb_target_group.group_infra.arn}"
-  target_id        = "${aws_instance.infra3.id}"
+  target_id        = ["${aws_instance.infra1.id}","${aws_instance.infra2.id}","${aws_instance.infra3.id}"]
   port             = 80
 }
