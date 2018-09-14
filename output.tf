@@ -5,5 +5,5 @@ output "openshift subdomain" {
   value = "${aws_lb.infra_alb.dns_name}"
 }
 output "bastion" {
-  value = "${aws_instance.master3.public_dns}"
+  value = "${aws_instance.bastion.public_dns}"
 }
