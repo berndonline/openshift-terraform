@@ -1,6 +1,6 @@
 resource "aws_security_group" "sec_bastion" {
   name        = "sec_bastion"
-  description = "Used for autoscale group"
+  description = "Used for bastion instance"
   vpc_id      = "${aws_vpc.default.id}"
   ingress {
     from_port   = 22
@@ -20,7 +20,7 @@ resource "aws_security_group" "sec_bastion" {
 }
 resource "aws_security_group" "sec_openshift" {
   name        = "sec_openshift"
-  description = "Used for openshift autoscale groups"
+  description = "Used for openshift instances"
   vpc_id      = "${aws_vpc.default.id}"
   ingress {
     from_port   = 0
