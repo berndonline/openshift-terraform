@@ -7,7 +7,6 @@ resource "aws_instance" "bastion" {
   instance_type        = "t2.micro"
   subnet_id            = "${aws_subnet.PublicSubnetA.id}"
   security_groups = [
-    "${aws_security_group.sec_openshift.id}",
     "${aws_security_group.sec_bastion.id}",
   ]
   associate_public_ip_address = true
