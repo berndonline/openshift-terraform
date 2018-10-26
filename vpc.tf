@@ -88,25 +88,9 @@ resource "aws_internet_gateway" "gw" {
 resource "aws_eip" "natgw_a" {
     vpc      = true
 }
-resource "aws_eip" "natgw_b" {
-    vpc      = true
-}
-resource "aws_eip" "natgw_c" {
-    vpc      = true
-}
 resource "aws_nat_gateway" "public_nat_a" {
     allocation_id = "${aws_eip.natgw_a.id}"
     subnet_id = "${aws_subnet.PublicSubnetA.id}"
-    depends_on = ["aws_internet_gateway.gw"]
-}
-resource "aws_nat_gateway" "public_nat_b" {
-    allocation_id = "${aws_eip.natgw_b.id}"
-    subnet_id = "${aws_subnet.PublicSubnetB.id}"
-    depends_on = ["aws_internet_gateway.gw"]
-}
-resource "aws_nat_gateway" "public_nat_c" {
-    allocation_id = "${aws_eip.natgw_c.id}"
-    subnet_id = "${aws_subnet.PublicSubnetC.id}"
     depends_on = ["aws_internet_gateway.gw"]
 }
 resource "aws_network_acl" "all" {
@@ -178,7 +162,7 @@ resource "aws_route_table" "private_route_b" {
   }
   route {
         cidr_block = "0.0.0.0/0"
-        nat_gateway_id = "${aws_nat_gateway.public_nat_b.id}"
+        nat_gateway_id = "${aws_nat_gateway.public_nat_a.id}"
   }
 }
 resource "aws_route_table" "private_route_c" {
@@ -188,6 +172,6 @@ resource "aws_route_table" "private_route_c" {
   }
   route {
         cidr_block = "0.0.0.0/0"
-        nat_gateway_id = "${aws_nat_gateway.public_nat_c.id}"
+        nat_gateway_id = "${aws_nat_gateway.public_nat_a.id}"
   }
 }
