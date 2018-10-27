@@ -1,55 +1,48 @@
-
+# Create an OSEv3 group that contains the masters, nodes, and etcd groups
 [OSEv3:children]
 masters
-etcd
 nodes
+etcd
 
+# Set variables common for all OSEv3 hosts
 [OSEv3:vars]
+# SSH user, this user should allow ssh based auth without requiring a password
 ansible_ssh_user=centos
-ansible_become=true
-openshift_deployment_type=origin
 
-openshift_release=v3.9
+# If ansible_ssh_user is not root, ansible_become must be set to true
+ansible_become=true
+
+openshift_metrics_install_metrics=true
+openshift_logging_install_logging=true
+openshift_console_install=true
+
+openshift_deployment_type=origin
+openshift_examples_modify_imagestreams=true
+
+openshift_release=v3.11
+openshift_additional_repos=[{'id': 'centos-okd-ci', 'name': 'centos-okd-ci', 'baseurl' :'https://rpms.svc.ci.openshift.org/openshift-origin-v3.11', 'gpgcheck' :'0', 'enabled' :'1'}]
 
 openshift_check_min_host_memory_gb=8
 openshift_disable_check=docker_image_availability,docker_storage,disk_availability
 
-containerized=true
-openshift_install_examples=true
-openshift_metrics_install_metrics=false
-openshift_metrics_start_cluster=false
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
+openshift_master_htpasswd_users={'demo': '$apr1$FN5C/ZTk$j4g/q8QOzlAGjt5W5nDQR1'}
 
-# use htpasswd authentication with demo/demo
-openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
-openshift_master_htpasswd_users={'demo': '$apr1$.MaA77kd$Rlnn6RXq9kCjnEfh5I3w/.'}
+openshift_master_default_subdomain=paas.hostgate.net
+openshift_public_hostname=console-paas.hostgate.net
 
-# put the router on dedicated infra node
-openshift_hosted_router_selector='region=infra'
-openshift_master_default_subdomain=${public_subdomain}
+openshift_hosted_registry_selector='node-role.kubernetes.io/infra=true'
 
-# put the image registry on dedicated infra node
-openshift_hosted_registry_selector='region=infra'
-
-# project pods should be placed on primary nodes
-osm_default_node_selector='region=primary'
+openshift_node_groups=[{'name': 'node-config-master', 'labels': ['node-role.kubernetes.io/master=true']}, {'name': 'node-config-infra', 'labels': ['node-role.kubernetes.io/infra=true']}, {'name': 'node-config-compute', 'labels': ['node-role.kubernetes.io/compute=true']}]
 
 [masters]
 ${master1_hostname}
-${master2_hostname}
-${master3_hostname}
 
 [etcd]
 ${master1_hostname}
-${master2_hostname}
-${master3_hostname}
 
 [nodes]
-${master1_hostname} openshift_hostname=${master1_hostname} openshift_public_hostname=${admin_hostname}
-${master2_hostname} openshift_hostname=${master2_hostname} openshift_public_hostname=${admin_hostname}
-${master3_hostname} openshift_hostname=${master3_hostname} openshift_public_hostname=${admin_hostname}
-${infra1_hostname} openshift_hostname=${infra1_hostname} openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
-${infra2_hostname} openshift_hostname=${infra2_hostname} openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
-${infra3_hostname} openshift_hostname=${infra3_hostname} openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
-${worker1_hostname} openshift_hostname=${worker1_hostname} openshift_schedulable=true openshift_node_labels="{'region': 'primary', 'zone': 'default'}"
-${worker2_hostname} openshift_hostname=${worker2_hostname} openshift_schedulable=true openshift_node_labels="{'region': 'primary', 'zone': 'default'}"
-${worker3_hostname} openshift_hostname=${worker3_hostname} openshift_schedulable=true openshift_node_labels="{'region': 'primary', 'zone': 'default'}"
+${master1_hostname} openshift_hostname='${master1_hostname}' openshift_node_group_name='node-config-master'
+${infra1_hostname} openshift_hostname='${infra1_hostname}' openshift_node_group_name='node-config-infra'
+${worker1_hostname} openshift_hostname='${worker1_hostname}' openshift_node_group_name='node-config-compute'
+
