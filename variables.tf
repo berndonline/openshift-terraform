@@ -1,6 +1,6 @@
 variable "bastion_key_path" {
   description = "My public ssh key"
-   default = "~/.ssh/id_rsa.pub"
+   default = "./helper_scripts/id_rsa.pub"
 }
 variable "openshift_key_path" {
   description = "My public ssh key"
