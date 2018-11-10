@@ -1,9 +1,12 @@
-provider "cloudflare" {
-  email = "your-email@domain.com"
-  token = "***YOUR-API-TOKEN***"
+variable "email" {
+}
+variable "token" {
 }
 variable "domain" {
-  default = "domain.com"
+}
+provider "cloudflare" {
+  email = "${var.email}"
+  token = "${var.token}"
 }
 resource "cloudflare_record" "console-paas" {
   domain  = "${var.domain}"
