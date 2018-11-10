@@ -51,3 +51,5 @@ variable "private_subnet_c" {
   default = "10.0.9.0/24"
   description = "Private subnet AZ C"
 }
+variable "htpasswd" {
+}
