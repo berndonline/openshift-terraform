@@ -6,6 +6,7 @@ data "template_file" "inventory" {
     master1_hostname = "${aws_instance.master1.private_dns}"
     infra1_hostname = "${aws_instance.infra1.private_dns}"
     worker1_hostname = "${aws_instance.worker1.private_dns}"
+    demo_htpasswd = "${var.htpasswd}"
   }
 }
 resource "local_file" "inventory" {
