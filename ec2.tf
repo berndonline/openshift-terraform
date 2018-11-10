@@ -10,6 +10,7 @@ resource "aws_instance" "bastion" {
     "${aws_security_group.sec_bastion.id}",
   ]
   ebs_block_device {
+    device_name  = "bastion"
     delete_on_termination = "true"
   }
   associate_public_ip_address = true
@@ -31,6 +32,7 @@ resource "aws_instance" "master1" {
     "${aws_security_group.sec_openshift.id}",
   ]
   ebs_block_device {
+    device_name  = "master1"
     delete_on_termination = "true"
   }
   key_name = "${aws_key_pair.openshift.id}"
@@ -47,6 +49,7 @@ resource "aws_instance" "worker1" {
     "${aws_security_group.sec_openshift.id}",
   ]
   ebs_block_device {
+    device_name  = "worker1"
     delete_on_termination = "true"
   }
   key_name = "${aws_key_pair.openshift.id}"
@@ -63,6 +66,7 @@ resource "aws_instance" "infra1" {
     "${aws_security_group.sec_openshift.id}",
   ]
   ebs_block_device {
+    device_name  = "infra1"
     delete_on_termination = "true"
   }
   key_name = "${aws_key_pair.openshift.id}"
