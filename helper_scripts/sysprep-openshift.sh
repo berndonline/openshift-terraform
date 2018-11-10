@@ -16,3 +16,4 @@ sudo systemctl stop docker
 sudo systemctl enable docker
 sudo rm -rf /var/lib/docker/*
 sudo systemctl restart docker
+sudo reboot
