@@ -21,7 +21,7 @@ openshift_check_min_host_memory_gb=8
 openshift_disable_check=docker_image_availability,docker_storage,disk_availability
 
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
-openshift_master_htpasswd_users={'demo': '$apr1$FN5C/ZTk$j4g/q8QOzlAGjt5W5nDQR1'}
+openshift_master_htpasswd_users={'demo': '${demo_htpasswd}'}
 
 openshift_master_default_subdomain=paas.hostgate.net
 openshift_public_hostname=console-paas.hostgate.net
