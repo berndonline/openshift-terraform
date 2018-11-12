@@ -10,3 +10,10 @@ data "template_file" "sysprep-bastion" {
 data "template_file" "sysprep-openshift" {
   template = "${file("./helper_scripts/sysprep-openshift.sh")}"
 }
+terraform {
+  backend "s3" {
+    bucket = "techbloc-terraform-data"
+    key    = "openshift-311"
+    region = "eu-west-1"
+  }
+}
