@@ -29,7 +29,6 @@ items:
       template: 
         metadata: 
           labels: 
-            chaos/enabled: "true"
             app: hello-app-http
             deploymentconfig: hello-app-http
         spec: 
