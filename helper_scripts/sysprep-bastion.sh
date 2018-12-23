@@ -5,4 +5,4 @@ sudo yum install -y "@Development Tools" python2-pip openssl-devel python-devel 
 sudo yum install -y pyOpenSSL python-cryptography python-lxml httpd-tools java-1.8.0-openjdk-headless
 git clone https://github.com/berndonline/openshift-ansible
 sudo pip install --upgrade pip
-sudo pip install 'ansible==2.6.5' passlib
+sudo pip install 'ansible==2.6.5' passlib jmespath
