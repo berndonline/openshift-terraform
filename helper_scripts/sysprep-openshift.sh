@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+sudo yum update -y
 sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 sudo yum install -y wget git net-tools bind-utils iptables-services bridge-utils bash-completion httpd-tools
 sudo yum-config-manager --enable rhui-REGION-rhel-server-extras
