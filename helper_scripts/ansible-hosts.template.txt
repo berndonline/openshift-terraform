@@ -15,6 +15,7 @@ openshift_deployment_type=origin
 openshift_examples_modify_imagestreams=true
 
 openshift_release=v3.11
+openshift_image_tag=v3.11.43
 openshift_additional_repos=[{'id': 'centos-okd-ci', 'name': 'centos-okd-ci', 'baseurl' :'https://rpms.svc.ci.openshift.org/openshift-origin-v3.11', 'gpgcheck' :'0', 'enabled' :'1'}]
 
 openshift_check_min_host_memory_gb=8
