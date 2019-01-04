@@ -6,14 +6,6 @@ variable "openshift_key_path" {
   description = "My public ssh key"
    default = "./helper_scripts/id_rsa.pub"
 }
-variable "bastion_key_name" {
-  description = "Desired name of AWS key pair"
-  default     = "bastion"
-}
-variable "openshift_key_name" {
-  description = "Desired name of AWS key pair"
-  default     = "openshift"
-}
 variable "gcp_region" {
   description = "Google Compute Platform region to launch servers."
   default     = "europe-west3"
