@@ -16,11 +16,6 @@ resource "google_compute_instance" "bastion" {
     }
   }
   metadata_startup_script = "${data.template_file.sysprep-bastion.rendered}"
-  provisioner "remote-exec" {
-    connection {
-      user = "centos"
-    }
-  }
   metadata {
     sshKeys = "centos:${file(var.bastion_key_path)}"
   }
