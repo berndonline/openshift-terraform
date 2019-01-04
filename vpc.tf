@@ -11,7 +11,7 @@ resource "google_compute_subnetwork" "subnet" {
  region        = "${var.gcp_region}"
 }
 resource "google_compute_firewall" "firewall" {
-  name    = "${var.name}-firewall"
+  name    = "vpc-firewall"
   network = "${google_compute_network.vpc.name}"
   allow {
     protocol = "icmp"
