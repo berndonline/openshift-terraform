@@ -22,6 +22,11 @@ variable "gcp_project" {
   description = "Google Compute Platform project name."
   default     = "terraform-227611"
 }
+variable "gcp_zone" {
+    type = "string"
+    default = "europe-west3-a"
+    description = "The zone to provision into"
+}
 variable "gcp_amis" {
   default = {
     eu-west-1 = "centos-7-v20181210"
