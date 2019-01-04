@@ -3,9 +3,9 @@ data "template_file" "inventory" {
   vars {
     public_subdomain = "paas.hostgate.net"
     admin_hostname = "console-paas.hostgate.net"
-    master1_hostname = "${google_compute_instance.master1.private_dns}"
-    infra1_hostname = "${google_compute_instance.infra1.private_dns}"
-    worker1_hostname = "${google_compute_instance.worker1.private_dns}"
+    master1_hostname = "${google_compute_instance.master1.network_interface.0.network_ip}"
+    infra1_hostname = "${google_compute_instance.infra1.network_interface.0.network_ip}"
+    worker1_hostname = "${google_compute_instance.worker1.network_interface.0.network_ip}"
     demo_htpasswd = "${var.htpasswd}"
   }
 }
