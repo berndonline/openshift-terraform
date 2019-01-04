@@ -10,7 +10,7 @@ resource "google_compute_instance" "bastion" {
     }
   }
   network_interface {
-    network = "vpc"
+    network = "${google_compute_network.vpc.name}"
     access_config {
         # Ephemeral
     }
