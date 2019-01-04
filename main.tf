@@ -1,9 +1,10 @@
 # Specify the provider and access details
-provider "aws" {
-  region = "${var.aws_region}"
+provider "google" {
+  credentials = "${file("${var.gcp_credentials}")}"
+  project     = "${var.gcp_project}"
+  region      = "${var.gcp_region}"
 }
 # Declare the data source
-data "aws_availability_zones" "available" {}
 data "template_file" "sysprep-bastion" {
   template = "${file("./helper_scripts/sysprep-bastion.sh")}"
 }
@@ -11,9 +12,8 @@ data "template_file" "sysprep-openshift" {
   template = "${file("./helper_scripts/sysprep-openshift.sh")}"
 }
 terraform {
-  backend "s3" {
-    bucket = "techbloc-terraform-data"
-    key    = "openshift-311"
-    region = "eu-west-1"
+  backend "gcs" {
+    bucket    = "techbloc-terraform-data"
+    prefix    = "openshift-311"
   }
 }
