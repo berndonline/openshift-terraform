@@ -5,7 +5,9 @@ resource "google_compute_instance" "bastion" {
   zone = "${var.gcp_zone}"
   tags = ["bastion"]
   boot_disk {
-    image = "${var.gcp_amis}"
+    initialize_params {
+      image = "${var.gcp_amis}"
+    }
   }
   network_interface {
     network = "vpc"
