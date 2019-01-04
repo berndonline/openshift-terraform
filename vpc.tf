@@ -1,12 +1,12 @@
 # Create a VPC to launch our instances into
 resource "google_compute_network" "vpc" {
- name                    = "VPC"
+ name                    = "vpc"
  auto_create_subnetworks = "false"
 }
 resource "google_compute_subnetwork" "subnet" {
  name          = "public-subnet-a"
  ip_cidr_range = "${var.public_subnet_a}"
- network       = "VPC"
+ network       = "vpc"
  depends_on    = ["google_compute_network.vpc"]
  region        = "${var.gcp_region}"
 }
