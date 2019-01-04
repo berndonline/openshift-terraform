@@ -10,14 +10,14 @@ provider "cloudflare" {
 }
 resource "cloudflare_record" "console-paas" {
   domain  = "${var.domain}"
-  name    = "console-paas"
+  name    = "console-gcp-paas"
   value   = "${google_compute_address.master.address}"
   type    = "A"
   proxied = false
 }
 resource "cloudflare_record" "wildcard-paas" {
   domain  = "${var.domain}"
-  name    = "*.paas"
+  name    = "*.gcp-paas"
   value   = "${google_compute_address.infra.address}"
   type    = "A"
   proxied = false

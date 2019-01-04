@@ -23,8 +23,8 @@ openshift_disable_check=docker_image_availability,docker_storage,disk_availabili
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
 openshift_master_htpasswd_users={'demo': '${demo_htpasswd}'}
 
-openshift_master_default_subdomain=paas.hostgate.net
-openshift_public_hostname=console-paas.hostgate.net
+openshift_master_default_subdomain=gcp-paas.hostgate.net
+openshift_public_hostname=console-gcp-paas.hostgate.net
 
 openshift_hosted_registry_selector='node-role.kubernetes.io/infra=true'
 openshift_logging_es_ops_nodeselector={"node-role.kubernetes.io/infra":"true"}
