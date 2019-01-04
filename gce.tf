@@ -10,7 +10,7 @@ resource "google_compute_instance" "bastion" {
     }
   }
   network_interface {
-    subnetwork = "subnet"
+    network = "vpc"
     access_config {
         # Ephemeral
     }
