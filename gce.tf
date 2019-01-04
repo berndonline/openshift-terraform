@@ -1,7 +1,3 @@
-resource "gcp_key_pair" "bastion" {
-  key_name   = "${var.bastion_key_name}"
-  public_key = "${file(var.bastion_key_path)}"
-}
 resource "google_compute_instance" "bastion" {
   count = 1
   name = "bastion"
@@ -26,5 +22,8 @@ resource "google_compute_instance" "bastion" {
             user = "centos",
             private_key = "${gcp_key_pair.bastion.id}"
         }
+  }
+  metadata {
+    sshKeys = "centos:${file(var.bastion_key_path)}"
   }
 }
