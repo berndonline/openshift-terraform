@@ -15,5 +15,6 @@ terraform {
   backend "gcs" {
     bucket    = "techbloc-terraform-data"
     prefix    = "openshift-311"
+    credentials = "${file("./credentials.json")}"
   }
 }
