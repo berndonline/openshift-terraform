@@ -1,7 +1,7 @@
 resource "google_compute_instance" "bastion" {
   count = 1
   name = "bastion"
-  machine_type = "f1-micro"
+  machine_type = "n1-standard-1"
   zone = "${var.gcp_zone}"
   tags = ["bastion"]
   boot_disk {
