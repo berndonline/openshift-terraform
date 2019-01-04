@@ -1,6 +1,6 @@
 # Specify the provider and access details
 provider "google" {
-  credentials = "${file("${var.gcp_credentials}")}"
+  credentials = "${file("./credentials.json")}"
   project     = "${var.gcp_project}"
   region      = "${var.gcp_region}"
 }

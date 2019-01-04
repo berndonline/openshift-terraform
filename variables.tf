@@ -22,10 +22,6 @@ variable "gcp_project" {
   description = "Google Compute Platform project name."
   default     = "terraform-227611"
 }
-variable "gcp_credentials" {
-  description = "Google Compute Platform credentials file"
-  default     = "credentials.json"
-}
 variable "gcp_amis" {
   default = {
     eu-west-1 = "ami-6e28b517"
