@@ -19,7 +19,7 @@ resource "google_compute_forwarding_rule" "https-infra" {
   port_range = "443"
 }
 resource "google_compute_http_health_check" "infra" {
-  name = "www-http-basic-check"
+  name = "infra-basic-check"
   request_path = "/"
   port = 80
   check_interval_sec = 1
@@ -42,7 +42,7 @@ resource "google_compute_forwarding_rule" "https-master" {
   port_range = "8443"
 }
 resource "google_compute_http_health_check" "master" {
-  name = "www-http-basic-check"
+  name = "master-basic-check"
   request_path = "/"
   port = 8443
   check_interval_sec = 1
