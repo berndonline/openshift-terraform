@@ -4,8 +4,7 @@ resource "google_compute_instance" "bastion" {
   machine_type = "f1-micro"
   zone = "${var.gcp_zone}"
   tags = ["bastion"]
-
-  disk {
+  boot_disk {
     image = "${var.gcp_amis}"
   }
   network_interface {
@@ -17,11 +16,6 @@ resource "google_compute_instance" "bastion" {
   }
   provisioner "remote-exec" {
         inline = "${data.template_file.sysprep-bastion.rendered}"
-        connection {
-            type = "ssh"
-            user = "centos",
-            private_key = "${gcp_key_pair.bastion.id}"
-        }
   }
   metadata {
     sshKeys = "centos:${file(var.bastion_key_path)}"
