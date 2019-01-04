@@ -38,7 +38,6 @@ resource "aws_instance" "master1" {
     delete_on_termination = true
   }
   key_name = "${aws_key_pair.openshift.id}"
-  user_data = "${data.template_file.sysprep-openshift.rendered}"
   tags {
     Name = "Master-1"
   }
@@ -56,7 +55,6 @@ resource "aws_instance" "worker1" {
     delete_on_termination = true
   }
   key_name = "${aws_key_pair.openshift.id}"
-  user_data = "${data.template_file.sysprep-openshift.rendered}"
   tags {
     Name = "Worker-1"
   }
@@ -74,7 +72,6 @@ resource "aws_instance" "infra1" {
     delete_on_termination = true
   }
   key_name = "${aws_key_pair.openshift.id}"
-  user_data = "${data.template_file.sysprep-openshift.rendered}"
   tags {
     Name = "Infra-1"
   }
