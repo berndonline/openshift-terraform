@@ -24,16 +24,10 @@ variable "gcp_project" {
 }
 variable "gcp_amis" {
   default = {
-    eu-west-1 = "ami-6e28b517"
+    eu-west-1 = "centos-7-v20181210"
   }
 }
 variable "vpc_cidr" {
   default = "10.0.0.0/20"
   description = "the vpc cdir range"
-}
-variable "public_subnet_a" {
-  default = "10.0.0.0/24"
-  description = "Public subnet A"
-}
-variable "htpasswd" {
 }
