@@ -10,14 +10,14 @@ provider "cloudflare" {
 }
 resource "cloudflare_record" "console-paas" {
   domain  = "${var.domain}"
-  name    = "console-paas"
+  name    = "console-aws-paas"
   value   = "${aws_lb.master_alb.dns_name}"
   type    = "CNAME"
   proxied = false
 }
 resource "cloudflare_record" "wildcard-paas" {
   domain  = "${var.domain}"
-  name    = "*.paas"
+  name    = "*.aws-paas"
   value   = "${aws_lb.infra_alb.dns_name}"
   type    = "CNAME"
   proxied = false
