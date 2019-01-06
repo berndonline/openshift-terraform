@@ -10,7 +10,7 @@ resource "google_compute_instance" "bastion" {
     }
   }
   network_interface {
-    subnetwork = "${google_compute_subnetwork.subnet.name}"
+    subnetwork = "${google_compute_subnetwork.public.name}"
     access_config {
         # Ephemeral
     }
@@ -32,7 +32,7 @@ resource "google_compute_instance" "master1" {
     }
   }
   network_interface {
-    subnetwork = "${google_compute_subnetwork.subnet.name}"
+    subnetwork = "${google_compute_subnetwork.private.name}"
   }
   metadata {
     sshKeys = "centos:${file(var.bastion_key_path)}"
@@ -50,7 +50,7 @@ resource "google_compute_instance" "infra1" {
     }
   }
   network_interface {
-    subnetwork = "${google_compute_subnetwork.subnet.name}"
+    subnetwork = "${google_compute_subnetwork.private.name}"
   }
   metadata {
     sshKeys = "centos:${file(var.bastion_key_path)}"
@@ -68,7 +68,7 @@ resource "google_compute_instance" "worker1" {
     }
   }
   network_interface {
-    subnetwork = "${google_compute_subnetwork.subnet.name}"
+    subnetwork = "${google_compute_subnetwork.private.name}"
   }
   metadata {
     sshKeys = "centos:${file(var.bastion_key_path)}"

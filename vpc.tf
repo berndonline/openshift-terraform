@@ -3,16 +3,23 @@ resource "google_compute_network" "vpc" {
  name                    = "vpc"
  auto_create_subnetworks = "false"
 }
-resource "google_compute_subnetwork" "subnet" {
- name          = "subnet"
- ip_cidr_range = "${var.vpc_cidr}"
+resource "google_compute_subnetwork" "public" {
+ name          = "public"
+ ip_cidr_range = "${var.vpc_public}"
+ network       = "vpc"
+ depends_on    = ["google_compute_network.vpc"]
+ region        = "${var.gcp_region}"
+}
+resource "google_compute_subnetwork" "private" {
+ name          = "private"
+ ip_cidr_range = "${var.vpc_private}"
  network       = "vpc"
  depends_on    = ["google_compute_network.vpc"]
  region        = "${var.gcp_region}"
 }
 resource "google_compute_router" "router" {
   name    = "router"
-  region  = "${google_compute_subnetwork.subnet.region}"
+  region  = "${google_compute_subnetwork.private.region}"
   network = "${google_compute_network.vpc.self_link}"
 }
 resource "google_compute_router_nat" "nat" {
