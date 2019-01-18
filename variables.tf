@@ -1,5 +1,9 @@
-variable "aws_zone" {
+variable "aws_region" {
   description = "AWS region to launch servers."
+  default     = "eu-west-1"
+}
+variable "aws_zone" {
+  description = "AWS zone to launch servers."
   default     = "eu-west-1a"
 }
 variable "aws_bundle" {
