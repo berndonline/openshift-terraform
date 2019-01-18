@@ -20,7 +20,7 @@ openshift_check_min_host_memory_gb=8
 openshift_disable_check=docker_image_availability,docker_storage,disk_availability,memory_availability
 
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
-openshift_master_htpasswd_users={'${admin_username}': '${admin_htpasswd}'}
+openshift_master_htpasswd_users={${admin_username}: '${admin_htpasswd}'}
 
 openshift_master_default_subdomain=${public_subdomain}
 openshift_public_hostname=${admin_hostname}
