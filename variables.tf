@@ -14,7 +14,7 @@ variable "aws_blueprint" {
   description = "AWS type of operating system."
   default     = "centos_7_1805_01"
 }
-variable "ocp_admin" {
+variable "ocp_username" {
 }
 variable "ocp_htpasswd" {
 }
