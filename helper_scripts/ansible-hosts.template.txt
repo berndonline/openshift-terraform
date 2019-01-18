@@ -8,7 +8,6 @@ ansible_ssh_user=centos
 ansible_become=true
 
 openshift_metrics_install_metrics=true
-openshift_logging_install_logging=true
 openshift_console_install=true
 
 openshift_deployment_type=origin
@@ -21,23 +20,16 @@ openshift_check_min_host_memory_gb=8
 openshift_disable_check=docker_image_availability,docker_storage,disk_availability,memory_availability
 
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
-openshift_master_htpasswd_users={'demo': '${demo_htpasswd}'}
+openshift_master_htpasswd_users={'${admin_username}': '${admin_htpasswd}'}
 
-openshift_master_default_subdomain=aws-paas.hostgate.net
-openshift_public_hostname=console-aws-paas.hostgate.net
-
-openshift_hosted_registry_selector='node-role.kubernetes.io/infra=true'
-openshift_logging_es_ops_nodeselector={"node-role.kubernetes.io/infra":"true"}
-openshift_logging_es_nodeselector={"node-role.kubernetes.io/infra":"true"}
-openshift_node_groups=[{'name': 'node-config-master', 'labels': ['node-role.kubernetes.io/master=true']}, {'name': 'node-config-infra', 'labels': ['node-role.kubernetes.io/infra=true']}, {'name': 'node-config-compute', 'labels': ['node-role.kubernetes.io/compute=true']}]
+openshift_master_default_subdomain=${public_subdomain}
+openshift_public_hostname=${admin_hostname}
 
 [masters]
-${master1_hostname}
+${aio_hostname}
 
 [etcd]
-${master1_hostname}
+${aio_hostname}
 
 [nodes]
-${master1_hostname} openshift_hostname='${master1_hostname}' openshift_node_group_name='node-config-master'
-${infra1_hostname} openshift_hostname='${infra1_hostname}' openshift_node_group_name='node-config-infra'
-${worker1_hostname} openshift_hostname='${worker1_hostname}' openshift_node_group_name='node-config-compute'
+${aio_hostname} openshift_hostname='${aio_hostname}' openshift_node_group_name='node-config-all-in-one'

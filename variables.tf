@@ -1,55 +1,20 @@
-variable "bastion_key_path" {
-  description = "My public ssh key"
-   default = "./helper_scripts/id_rsa.pub"
-}
-variable "openshift_key_path" {
-  description = "My public ssh key"
-   default = "./helper_scripts/id_rsa.pub"
-}
-variable "bastion_key_name" {
-  description = "Desired name of AWS key pair"
-  default     = "bastion"
-}
-variable "openshift_key_name" {
-  description = "Desired name of AWS key pair"
-  default     = "openshift"
-}
-variable "aws_region" {
+variable "aws_zone" {
   description = "AWS region to launch servers."
-  default     = "eu-west-1"
+  default     = "eu-west-1a"
 }
-variable "aws_amis" {
-  default = {
-    eu-west-1 = "ami-6e28b517"
-  }
+variable "aws_bundle" {
+  description = "AWS instance size."
+  default     = "medium_"
 }
-variable "vpc_cidr" {
-    default = "10.0.0.0/20"
-  description = "the vpc cdir range"
+variable "aws_blueprint" {
+  description = "AWS type of operating system."
+  default     = "centos_7_1805_01"
 }
-variable "public_subnet_a" {
-  default = "10.0.0.0/24"
-  description = "Public subnet AZ A"
+variable "ocp_admin" {
 }
-variable "public_subnet_b" {
-  default = "10.0.4.0/24"
-  description = "Public subnet AZ B"
+variable "ocp_htpasswd" {
 }
-variable "public_subnet_c" {
-  default = "10.0.8.0/24"
-  description = "Public subnet AZ C"
+variable "ocp_console" {
 }
-variable "private_subnet_a" {
-  default = "10.0.1.0/24"
-  description = "Private subnet AZ A"
-}
-variable "private_subnet_b" {
-  default = "10.0.5.0/24"
-  description = "Private subnet AZ B"
-}
-variable "private_subnet_c" {
-  default = "10.0.9.0/24"
-  description = "Private subnet AZ C"
-}
-variable "htpasswd" {
+variable "ocp_subdomain" {
 }
