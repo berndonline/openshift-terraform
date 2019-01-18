@@ -11,11 +11,11 @@ resource "aws_lightsail_instance" "aio" {
   key_pair_name     = "${aws_lightsail_key_pair.aio_key.id}"
 }
 
-resource "aws_lightsail_static_ip_attachment" "aio" {
-  static_ip_name = "${aws_lightsail_static_ip.aio.name}"
+resource "aws_lightsail_static_ip_attachment" "aio_ip_attchment" {
+  static_ip_name = "${aws_lightsail_static_ip.aio_ip.name}"
   instance_name  = "${aws_lightsail_instance.aio.name}"
 }
 
-resource "aws_lightsail_static_ip" "aio" {
+resource "aws_lightsail_static_ip" "aio_ip" {
   name = "aio"
 }
