@@ -3,7 +3,7 @@ data "template_file" "inventory" {
   vars {
     public_subdomain = "${var.ocp_subdomain}"
     admin_hostname = "${var.ocp_console}"
-    aio_hostname = "${aws_lightsail_instance.aio.name}"
+    aio_hostname = "${aws_lightsail_instance.aio.private_ip_address}"
     admin_username = "${var.ocp_username}"
     admin_htpasswd = "${var.ocp_htpasswd}"
   }
