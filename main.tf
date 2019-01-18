@@ -7,7 +7,7 @@ data "aws_availability_zones" "available" {}
 terraform {
   backend "s3" {
     bucket = "techbloc-terraform-data"
-    key    = "openshift-311-aio"
+    key    = "openshift-311"
     region = "eu-west-1"
   }
 }
