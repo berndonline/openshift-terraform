@@ -12,6 +12,7 @@ openshift_console_install=true
 
 openshift_deployment_type=origin
 openshift_examples_modify_imagestreams=true
+os_sdn_network_plugin_name='redhat/openshift-ovs-networkpolicy'
 
 openshift_release=v3.11
 openshift_additional_repos=[{'id': 'centos-okd-ci', 'name': 'centos-okd-ci', 'baseurl' :'https://rpms.svc.ci.openshift.org/openshift-origin-v3.11', 'gpgcheck' :'0', 'enabled' :'1'}]
