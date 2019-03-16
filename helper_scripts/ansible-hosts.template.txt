@@ -11,7 +11,7 @@ openshift_metrics_install_metrics=false
 openshift_console_install=true
 
 openshift_deployment_type=origin
-openshift_examples_modify_imagestreams=false
+openshift_install_examples=false
 os_sdn_network_plugin_name='redhat/openshift-ovs-networkpolicy'
 
 openshift_release=v3.11
