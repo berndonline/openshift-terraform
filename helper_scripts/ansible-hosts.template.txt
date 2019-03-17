@@ -15,7 +15,7 @@ openshift_check_min_host_memory_gb=8
 openshift_disable_check=docker_image_availability,docker_storage,disk_availability
 
 containerized=true
-openshift_install_examples=true
+openshift_install_examples=false
 openshift_metrics_install_metrics=false
 openshift_metrics_start_cluster=false
 
