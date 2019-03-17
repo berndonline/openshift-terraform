@@ -7,7 +7,12 @@ nodes
 [OSEv3:vars]
 ansible_ssh_user=centos
 ansible_become=true
+
+openshift_metrics_install_metrics=false
+openshift_metrics_start_cluster=false
+
 openshift_deployment_type=origin
+openshift_install_examples=false
 
 openshift_release=v3.9
 
@@ -15,22 +20,14 @@ openshift_check_min_host_memory_gb=8
 openshift_disable_check=docker_image_availability,docker_storage,disk_availability
 
 containerized=true
-openshift_install_examples=false
-openshift_metrics_install_metrics=false
-openshift_metrics_start_cluster=false
-
-# use htpasswd authentication with demo/demo
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
 openshift_master_htpasswd_users={'demo': '$apr1$.MaA77kd$Rlnn6RXq9kCjnEfh5I3w/.'}
 
-# put the router on dedicated infra node
 openshift_hosted_router_selector='region=infra'
 openshift_master_default_subdomain=${public_subdomain}
 
-# put the image registry on dedicated infra node
 openshift_hosted_registry_selector='region=infra'
 
-# project pods should be placed on primary nodes
 osm_default_node_selector='region=primary'
 
 [masters]
