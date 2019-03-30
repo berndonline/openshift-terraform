@@ -8,7 +8,7 @@ variable "aws_zone" {
 }
 variable "aws_bundle" {
   description = "AWS instance size."
-  default     = "large_2_0"
+  default     = "xlarge_2_0"
 }
 variable "aws_blueprint" {
   description = "AWS type of operating system."
